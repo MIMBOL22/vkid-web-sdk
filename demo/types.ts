@@ -1,5 +1,6 @@
 import { TokenResult } from '#/auth/types';
 import { ConfigAuthMode, Prompt } from '#/core/config';
+import { AuthCallback } from '#/core/config/types';
 import { Languages, Scheme } from '#/types';
 import { FloatingOneTapContentId } from '#/widgets/floatingOneTap';
 
@@ -23,4 +24,5 @@ export interface DemoStore {
   deviceId: string;
   vkidDomain: string;
   scope: string;
+  onAuth: AuthCallback;
 }

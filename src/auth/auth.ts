@@ -284,6 +284,11 @@ export class Auth {
   }
 
   protected redirectWithPayload(payload: RedirectPayload) {
-    location.assign(getRedirectWithPayloadUrl(payload, Auth.config));
+    const config = Auth.config.get();
+    const isNeedToRedirect = config.onAuth && config.onAuth(payload);
+
+    if (isNeedToRedirect) {
+      location.assign(getRedirectWithPayloadUrl(payload, Auth.config));
+    }
   }
 }

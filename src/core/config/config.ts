@@ -12,6 +12,7 @@ export class Config {
     codeVerifier: '',
     state: '',
     prompt: [Prompt.Default],
+    onAuth: ()=>true,
 
     __loginDomain: LOGIN_DOMAIN,
     __oauthDomain: OAUTH_DOMAIN,

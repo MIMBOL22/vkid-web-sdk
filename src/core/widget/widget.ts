@@ -195,6 +195,11 @@ export class Widget<P = WidgetParams> extends Dispatcher {
   }
 
   protected redirectWithPayload(payload: RedirectPayload) {
-    location.assign(getRedirectWithPayloadUrl(payload, Widget.config));
+    const config = Widget.config.get();
+    const isNeedToRedirect = config.onAuth && config.onAuth(payload);
+
+    if (isNeedToRedirect) {
+      location.assign(getRedirectWithPayloadUrl(payload, Widget.config));
+    }
   }
 }

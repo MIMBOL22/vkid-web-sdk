@@ -119,6 +119,39 @@ if (container) {
 ```
 </details>
 
+<details>
+  <summary>OneTap с Callback-функцией</summary>
+
+```javascript
+import * as VKID from '@vkid/sdk';
+
+const onAuth = (payload) => {
+  console.log('Пользователь авторизирован, payload:', payload);
+  return false; // Отключаем последующий редирект
+};
+
+VKID.Config.init({
+  app: APP_ID,
+  redirectUrl: 'https://example.com', 
+  state: 'state',
+  codeVerifier: 'codeVerifier',
+  scope: 'phone email',
+});
+
+const oneTap = new VKID.OneTap();
+
+const container = document.getElementById('VkIdSdkOneTap');
+
+if (container) {
+  oneTap
+    .render({ container })
+    .on(VKID.WidgetEvents.ERROR, console.error);
+}
+```
+</details>
+
+> Обратите внимание: OneTap с callback работает только в случае, когда пользователь уже авторизирован. Callback также возможен в FloatingOneTap
+
 ## Документация
 
 - [Что такое VK ID](https://id.vk.com/about/business/go/docs/ru/vkid/latest/vk-id-2/intro/start-page)

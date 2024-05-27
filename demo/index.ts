@@ -146,3 +146,17 @@ function handleConfigInputChange(e: InputEvent) {
   document.getElementById(inputId)?.addEventListener('input', handleConfigInputChange);
 });
 
+function handleConfigAuthCallbackChange(event: Event) {
+  const input = event.target as HTMLInputElement;
+  const onAuth = () => {
+    if (input.checked) {
+      alert('AuthCallback triggered, payload:');
+    }
+    return !input.checked;
+  };
+  demoStore = Object.assign(demoStore, { onAuth });
+  saveDemoStoreInLS(demoStore);
+  VKID.Config.update({ onAuth });
+}
+const enableCallbackCheckboxEl = document.getElementById('checkbox_enable_callback');
+enableCallbackCheckboxEl && enableCallbackCheckboxEl.addEventListener('change', handleConfigAuthCallbackChange);

@@ -1,3 +1,5 @@
+import { AuthResponse } from '#/auth/types';
+
 export enum ConfigAuthMode {
   Redirect = 'redirect',
   InNewTab = 'new_tab'
@@ -12,6 +14,12 @@ export type PKSE = (
   | { codeVerifier?: never; codeChallenge: string }
   );
 
+/**
+ * Работает только с OneTap и FloatingOneTap при условии, что пользователь
+ * уже авторизирован в VK
+ */
+export type AuthCallback = (response: AuthResponse) => boolean | void;
+
 export interface ConfigData {
   app: number;
   redirectUrl: string;
@@ -19,6 +27,7 @@ export interface ConfigData {
   codeVerifier?: string;
   codeChallenge?: string;
   scope?: string;
+  onAuth?: AuthCallback;
 
   /**
    * @ignore

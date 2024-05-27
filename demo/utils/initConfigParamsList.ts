@@ -18,6 +18,11 @@ export const initConfigParamsList = (store: DemoStore) => {
   <br />
   <label for="input_scope">scope:</label>
   <input value="${store.scope}" type="text" id="input_scope">
+  <br />
+  <label for="input_scope">
+  onAuth:
+  <input type="checkbox" id="checkbox_enable_callback">
+  </label>
 </details>
   `;
   document.querySelector('.VkIdWebSdk_controls')?.insertAdjacentHTML('beforeend', html);

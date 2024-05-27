@@ -40,6 +40,7 @@ export const getDemoStoreFromLS = (): DemoStore => {
     deviceId: '',
     vkidDomain: '',
     scope: '',
+    onAuth: ()=>false,
   };
 
   try {
